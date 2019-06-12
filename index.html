@@ -5,19 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        #playlist,audio{
+        background:#666;
+        width:400px;
+        padding:20px;
+        }
+        .active a{
+        color:#5DB0E6;
+        text-decoration:none;
+        }
+        li a{
+        color:#eeeedd;
+        background:#333;
+        padding:5px;
+        display:block;
+        }
+        li a:hover{
+        text-decoration:none;
+        }
+        ul {
+        list-style:none;
+        padding-left:0px;
+        }
+    </style>
     <script
     src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
     crossorigin="anonymous"></script></head>
 <body>
     
+    <div>
+        <audio id="audio" preload="auto" tabindex="0" controls="" type="audio/mpeg">
+            <source type="audio/mp3" src="http://rf.proxycast.org/1579743881736495104/18141-10.06.2019-ITEMA_22084321-0.mp3">
+        </audio>
+        <ul id="playlist">
+            <li><a href="http://rf.proxycast.org/1579743881736495104/18141-10.06.2019-ITEMA_22084321-0.mp3">Le pénis n’est rien</a></li>
+            <li><a href="http://rf.proxycast.org/1580130144524181504/18141-11.06.2019-ITEMA_22085307-0.mp3">On écrit sur les murs le nom de ceux qu’on hai</a></li>
+            <li><a href="http://rf.proxycast.org/1580485840075759616/18141-12.06.2019-ITEMA_22086294-0.mp3">Business Investing</a></li>
+        </ul>
+    </div>
 
-<div></div>
 
 
 
 
     <script type="text/javascript">
+    // function ajax
     console.log($);
         $(document).ready(function () {
             $.ajax({
@@ -37,6 +71,50 @@
             });
         
         });
+
+
+
+        // function player
+        let audio;
+        let playlist;
+        let tracks;
+        let current;
+
+        init();
+        function init(){
+    current = 0;
+    audio = $('audio');
+    playlist = $('#playlist');
+    tracks = playlist.find('li a');
+    len = tracks.length - 1;
+    audio[0].volume = .10;
+    audio[0].play();
+    playlist.find('a').click(function(e){
+        e.preventDefault();
+        link = $(this);
+        current = link.parent().index();
+        run(link, audio[0]);
+    });
+    audio[0].addEventListener('ended',function(e){
+        current++;
+        if(current == len){
+            current = 0;
+            link = playlist.find('a')[0];
+            
+        }else{
+            link = playlist.find('a')[current];    
+        }
+        run($(link),audio[0]);
+        $( "li:first-child" ).remove()
+    });
+}
+            function run(link, player){
+        player.src = link.attr('href');
+        par = link.parent();
+        par.addClass('active').siblings().removeClass('active');
+        audio[0].load();
+        audio[0].play();
+}
     </script>
 </body>
 </html>
