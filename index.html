@@ -4,87 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>podpro v0.1</title>
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"
-		integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-		crossorigin="anonymous">
-	</script>
+	<link rel="stylesheet" href="assets/styles.css">
 </head>
-
 
 <body>
 <!-- <audio controls src="http://media.radiofrance-podcast.net/podcast09/10175-11.06.2019-ITEMA_22085342-0.mp3"></audio> -->
 	
+<div class="containr">
+	<main>
+		<section id="player"></section>
+		<section>
+			<ol id="playlist" class="buttonsList"></ol>
+		</section>
+		<section id="episodes" class="buttonsList"></section>
+	</main>
+</div>
 
-
-
-    <script type="text/javascript">
-	let reponse,
-		program = {
-			FceCult_GrainMoudre:		'http://radiofrance-podcast.net/podcast09/rss_10175.xml',
-			FceMus_TPastureau:			'http://radiofrance-podcast.net/podcast09/rss_18141.xml',
-			FceInter_MarcheHistoire:	'http://radiofrance-podcast.net/podcast09/rss_11739.xml',
-			RMC_RoutesEurope:			'https://podcast.rmc.fr/channel368/RMCInfochannel368.xml',
-			
-			
-			RFI:						'http://www.rfi.fr/ameriques/rss',
-			RTL:						'https://www.rtl.fr/podcast/une-lettre-d-amerique.xml',
-			test:						'http://feeds.soundcloud.com/users/soundcloud:users:30994369/sounds.rss',
-			hasard:						'beforedemisterb.lepodcast.fr/rss',	 //'http://beforedemisterb.lepodcast.fr/rss',
-			gamekult:					'https://feeds.soundcloud.com/users/soundcloud:users:110920201/sounds.rss'
-		};
-        $(document).ready(function () {
-            $.ajax({
-                type: "GET",
-                url: program.FceCult_GrainMoudre,
-                cache: false,
-                dataType: "xml",
-                success: function (reponseXML) {
-					response = $(reponseXML);
-					let episodes = {
-						dates: [],
-						durations: [],
-						flows: [],
-						titles: []
-					};
-
-					episodes.title = response.find("channel title")[0].innerHTML;
-
-					for (let date of response.find("item pubDate"))
-					{
-						episodes.dates.push(date.innerHTML);
-					}
-
-					for (let duration of response.find("item itunes\\:duration"))
-					{
-						episodes.durations.push(duration.innerHTML);
-					}
-
-
-					for (let title of response.find("item title"))
-					{
-						episodes.titles.push(title.innerHTML);
-					}
-
-
-					for (let flow of response.find("item enclosure"))
-					{
-						episodes.flows.push(flow.getAttribute('url'));
-					}
-
-
-					console.log(episodes)
-
-
-					                }
-
-					                    // $(xml).find('name').each(function(){
-					                                // var name = $(this).text();
-					                                // alert(name);
-					                    // });
-
-					            });
-
-					        });
-    </script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+	integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+	crossorigin="anonymous"></script>
+<script src="assets/config.js"></script>
+<script src="assets/flux.js"></script>
 </body>
 </html>

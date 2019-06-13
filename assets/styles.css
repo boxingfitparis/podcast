@@ -1,0 +1,72 @@
+/* reset, normalize et bases */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+body {
+	background: #FFF;
+	color: #000;
+	font-family: sans-serif;
+	min-height: 100vh;
+}
+body,
+h1,
+h2,
+h3,
+p,
+ul {
+	margin: 0;
+}
+ul {
+	list-style: none;
+	padding: 0;
+}
+a:visited {
+	color: #000;
+	text-decoration: none;
+}
+a:hover,
+a:focus,
+a:active {
+	color: maroon;
+	text-decoration: underline;
+}
+a:visited {
+	color: darkgray;
+}
+button,
+input,
+select,
+textarea {
+	color: inherit;
+	font-family: inherit;
+	font-style: inherit;
+	font-weight: inherit;
+}
+.own_margin::before,
+.own_margin::after {
+    content: " ";
+    display: table;
+}
+
+
+
+.containr {
+    margin: 0 auto;
+    width: 800px;
+}
+
+
+.buttonsList button {
+    background-color: aliceblue;
+    border: 1px solid bisque;
+    border-radius: 3px;
+    cursor: copy;
+}
+.buttonsList button:hover,
+.buttonsList button:focus {
+    background-color: bisque;
+    border-color: aliceblue;
+}
+
