@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,22 +9,81 @@
 </head>
 
 <body>
-<!-- <audio controls src="http://media.radiofrance-podcast.net/podcast09/10175-11.06.2019-ITEMA_22085342-0.mp3"></audio> -->
-	
-<div class="containr">
-	<main>
-		<section id="player"></section>
-		<section>
-			<ol id="playlist" class="buttonsList"></ol>
+
+<div class="containr inactive" id="containr">
+
+	<header class="player">
+		<audio id="audio" preload="auto" controls></audio>
+	</header>
+
+	<main class="flexy">
+
+		<section id="playlistZone" class="playlistZone buttonsList">
+			<h2 id="playlistTitle"></h2>
+			<ol id="playlist"></ol>
+			<em class="activabilite">Le player est activable avec au moins un épisode à lire dans la playlist</em>
 		</section>
-		<section id="episodes" class="buttonsList"></section>
+
+		<section id="episodesZone" class="episodesZone buttonsList">
+			<h2 id="episodesTitle">épisodes</h2>
+			<ul id="episodes"></ul>
+		</section>
+
+		<section id="emissionsZone" class="emissionsZone">
+			<h2 id="emissionsTitle">émissions</h2>
+			<ul id="emissions"></ul>
+		</section>
+
 	</main>
+
+
 </div>
+
+
+
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"
 	integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
 	crossorigin="anonymous"></script>
-<script src="assets/config.js"></script>
-<script src="assets/flux.js"></script>
+<script src="assets/variables_classes.js"></script>
+<script>
+"use strict";
+
+const messages = {
+	RSSError: 'le flux RSS n\'est pas disponible, ou n\'est pas au format attendu'
+};
+
+let emissionsFlux =
+	{
+		FceCult_GrainMoudre:		'http://radiofrance-podcast.net/podcast09/rss_10175.xml',
+		FceMus_TPastureau:			'http://radiofrance-podcast.net/podcast09/rss_18141.xml',
+		FceInter_MarcheHistoire:	'http://radiofrance-podcast.net/podcast09/rss_11739.xml',
+		RMC_RoutesEurope:			'https://podcast.rmc.fr/channel368/RMCInfochannel368.xml',
+		test:                       'http://localhost/podcast/assets/_10175.xml'
+
+		/*        to do : proxy ?
+		RFI:						'http://www.rfi.fr/ameriques/rss',
+		RTL:						'https://www.rtl.fr/podcast/une-lettre-d-amerique.xml',
+		test:						'http://feeds.soundcloud.com/users/soundcloud:users:30994369/sounds.rss',
+		hasard:						'beforedemisterb.lepodcast.fr/rss',	 //'http://beforedemisterb.lepodcast.fr/rss',
+		gamekult:					'https://feeds.soundcloud.com/users/soundcloud:users:110920201/sounds.rss'
+	*/
+	},
+
+    emission = 'FceCult_GrainMoudre',
+
+	playlistsList = ['première playlist'];
+
+
+
+    // let emission = 'test';
+
+
+</script>
+
+<script src="assets/playlist_player.js"></script>
+<script src="assets/flux_rss.js"></script>
+<script src="assets/evenements.js"></script>
 </body>
+
 </html>
